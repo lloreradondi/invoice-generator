@@ -28,7 +28,7 @@
   var GUMROAD_PRODUCT_ID = "lhipodc";  // permalink; used for online license verification
   // Optional: Gumroad's API "product_id" token (from the Content tab license block).
   // If set, it's used instead of the permalink for verification. Leave blank to use permalink.
-  var GUMROAD_API_PRODUCT_ID = "";
+  var GUMROAD_API_PRODUCT_ID = "KlbtaaTa_RdHQCzzOwtNJA==";
 
   // Displayed price for the Pro upgrade (change any time — purely cosmetic).
   var PRO_PRICE = "$9";

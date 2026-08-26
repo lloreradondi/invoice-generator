@@ -108,7 +108,7 @@ working*, so no paying customer is ever locked out.
 **Licensing (forward-compatible):**
 - All Pro checks go through **`isPro()`** — the watermark/PDF code never changes when the licensing tier is upgraded.
 - **`activateLicense(key)` returns a Promise**, so the async Gumroad `fetch` slots in without touching any caller.
-- **Option B is active:** keys are verified online against Gumroad's license API (`https://api.gumroad.com/v2/licenses/verify`) using the product permalink. Refunded/disputed keys are rejected. Gumroad sends `access-control-allow-origin: *`, so this runs client-side with no backend.
+- **Option B is active:** keys are verified online against Gumroad's license API (`https://api.gumroad.com/v2/licenses/verify`) using the product's API `product_id`. Refunded/disputed keys are rejected. Gumroad sends `access-control-allow-origin: *`, so this runs client-side with no backend.
 - Local format pre-check (`isValidKeyFormat()`) runs first to avoid needless API calls.
 - Config at the top of `app.js`: `GUMROAD_BUY_URL`, `GUMROAD_PRODUCT_ID` (permalink used for verification), optional `GUMROAD_API_PRODUCT_ID` (token form), and `PRO_PRICE`.
 
