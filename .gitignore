@@ -1,6 +1,7 @@
 # --- Private / internal docs (keep OUT of the public repo) ---
 MONEY-PLAN.md
 PLAN.md
+PROMOTION.md
 
 # --- Secrets / saved keys (never commit) ---
 key
