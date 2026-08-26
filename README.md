@@ -107,9 +107,10 @@ working*, so no paying customer is ever locked out.
 
 **Licensing (forward-compatible):**
 - All Pro checks go through **`isPro()`** — the watermark/PDF code never changes when the licensing tier is upgraded.
-- **`activateLicense(key)` returns a Promise**, so Option B's async Gumroad `fetch` slots in without touching any caller.
-- Option A validates keys **locally** via `isValidKeyFormat()` (kept permissive so a genuine Gumroad key is never rejected). Option B will add an online check inside `activateLicense()` guarded by `GUMROAD_PRODUCT_ID`.
-- Config lives at the top of `app.js`: `GUMROAD_BUY_URL` (buy button) and `GUMROAD_PRODUCT_ID` (enables Option B).
+- **`activateLicense(key)` returns a Promise**, so the async Gumroad `fetch` slots in without touching any caller.
+- **Option B is active:** keys are verified online against Gumroad's license API (`https://api.gumroad.com/v2/licenses/verify`) using the product permalink. Refunded/disputed keys are rejected. Gumroad sends `access-control-allow-origin: *`, so this runs client-side with no backend.
+- Local format pre-check (`isValidKeyFormat()`) runs first to avoid needless API calls.
+- Config at the top of `app.js`: `GUMROAD_BUY_URL`, `GUMROAD_PRODUCT_ID` (permalink used for verification), optional `GUMROAD_API_PRODUCT_ID` (token form), and `PRO_PRICE`.
 
 **Data safety:**
 - All user text is escaped via `escapeHtml()` before being inserted into the DOM (prevents HTML/script injection from typed input).
@@ -122,7 +123,7 @@ working*, so no paying customer is ever locked out.
 - ✅ **Phase 0 — Foundation** (files, responsive layout, localStorage)
 - ✅ **Phase 1 — Core invoice builder** (form, live preview, totals, logo, currency, dates)
 - ✅ **Phase 2 — Export** (print/PDF for current, selected, or all invoices; multiple saved invoices; auto-numbering)
-- 🟡 **Phase 3 — Freemium / payments** (Pro watermark-removal + license keys done via **Option A**; still to do: set live Gumroad URL, optional Option B online verification, extra Pro perks)
+- ✅ **Phase 3 — Freemium / payments** (Pro watermark-removal; license keys with **online Gumroad verification**; live $9 checkout)
 - ⬜ **Phase 4 — Traffic & ads**
 - ⬜ **Phase 5 — Polish & launch (PWA, deploy)**
 - ⬜ **Phase 6 — Optional accounts / cloud sync**

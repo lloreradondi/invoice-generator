@@ -25,7 +25,10 @@
        customer ever loses access.
      ---------------------------------------------------------- */
   var GUMROAD_BUY_URL = "https://llorera3.gumroad.com/l/lhipodc";
-  var GUMROAD_PRODUCT_ID = "lhipodc";  // permalink; enables Option B (online verify) later
+  var GUMROAD_PRODUCT_ID = "lhipodc";  // permalink; used for online license verification
+  // Optional: Gumroad's API "product_id" token (from the Content tab license block).
+  // If set, it's used instead of the permalink for verification. Leave blank to use permalink.
+  var GUMROAD_API_PRODUCT_ID = "";
 
   // Displayed price for the Pro upgrade (change any time — purely cosmetic).
   var PRO_PRICE = "$9";
@@ -375,8 +378,10 @@
     return !!(license && license.key);
   }
 
-  // Returns a Promise<{ ok, message }>. Option A resolves locally; Option B will
-  // do `fetch` to Gumroad's verify endpoint here before resolving ok:true.
+  // Returns a Promise<{ ok, message }>.
+  // Option B: when GUMROAD_PRODUCT_ID is set, the key is verified online against
+  // Gumroad before Pro is granted, so only genuine, non-refunded keys unlock.
+  // Falls back to Option A (local accept) only if no product is configured.
   function activateLicense(key) {
     key = String(key || "").trim();
     if (!isValidKeyFormat(key)) {
@@ -385,10 +390,61 @@
         message: "That doesn't look like a valid license key. Copy it exactly from your Gumroad receipt."
       });
     }
-    // --- Option B hook (later): when GUMROAD_PRODUCT_ID is set, verify online here. ---
+
+    if (GUMROAD_PRODUCT_ID || GUMROAD_API_PRODUCT_ID) {
+      return verifyWithGumroad(key).then(function (res) {
+        if (res.ok) {
+          license = { key: key.toUpperCase(), activatedAt: Date.now(), verified: true };
+          persistLicense();
+        }
+        return res;
+      });
+    }
+
+    // Option A fallback (no product configured): accept locally.
     license = { key: key.toUpperCase(), activatedAt: Date.now(), verified: false };
     persistLicense();
     return Promise.resolve({ ok: true });
+  }
+
+  // Calls Gumroad's license-verify API. Resolves { ok, message }.
+  function verifyWithGumroad(key) {
+    var body = new URLSearchParams();
+    if (GUMROAD_API_PRODUCT_ID) {
+      body.set("product_id", GUMROAD_API_PRODUCT_ID);
+    } else {
+      body.set("product_permalink", GUMROAD_PRODUCT_ID);
+    }
+    body.set("license_key", key);
+    body.set("increment_uses_count", "false"); // don't count each device/activation
+
+    return fetch("https://api.gumroad.com/v2/licenses/verify", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: body.toString()
+    })
+      .then(function (r) {
+        return r.json().catch(function () { return null; });
+      })
+      .then(function (data) {
+        if (data && data.success) {
+          var p = data.purchase || {};
+          if (p.refunded || p.chargedback || p.disputed) {
+            return { ok: false, message: "This license was refunded or disputed, so it can't be activated." };
+          }
+          return { ok: true };
+        }
+        return {
+          ok: false,
+          message: "That license key wasn't found for this product. Double-check it and try again."
+        };
+      })
+      .catch(function () {
+        return {
+          ok: false,
+          message: "Couldn't reach the license server. Check your connection and try again."
+        };
+      });
   }
 
   function removeLicense() {
