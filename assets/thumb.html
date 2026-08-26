@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 600px; height: 600px; overflow: hidden; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: linear-gradient(160deg, #2563eb 0%, #1d4ed8 100%);
+    color: #fff;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 48px;
+  }
+  .logo {
+    width: 128px; height: 128px; border-radius: 30px; background: #fff;
+    display: flex; align-items: center; justify-content: center; margin-bottom: 34px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  }
+  .logo svg { width: 78px; height: 78px; }
+  .title { font-size: 52px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.05; }
+  .pro {
+    display: inline-block; background: #fbbf24; color: #1e293b; font-weight: 800;
+    font-size: 30px; padding: 6px 24px; border-radius: 12px; margin-top: 14px; letter-spacing: 0.05em;
+  }
+  .sub { font-size: 26px; opacity: 0.95; margin-top: 30px; font-weight: 600; }
+  .price { font-size: 22px; margin-top: 10px; opacity: 0.9; }
+</style>
+</head>
+<body>
+  <div class="logo">
+    <svg viewBox="0 0 64 64"><rect x="14" y="8" width="36" height="48" rx="4" fill="#2563eb"/><rect x="20" y="18" width="24" height="4" rx="2" fill="#fff"/><rect x="20" y="28" width="24" height="4" rx="2" fill="#93c5fd"/><rect x="20" y="36" width="24" height="4" rx="2" fill="#93c5fd"/><rect x="20" y="44" width="13" height="4" rx="2" fill="#fff"/></svg>
+  </div>
+  <div class="title">Invoice<br>Generator</div>
+  <span class="pro">PRO</span>
+  <div class="sub">No watermark · Clean PDFs</div>
+  <div class="price">$9 · Lifetime</div>
+</body>
+</html>

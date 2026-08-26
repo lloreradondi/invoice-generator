@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <radialGradient id="bg" cx="78%" cy="20%" r="90%">
+      <stop offset="0%" stop-color="#dbeafe"/>
+      <stop offset="45%" stop-color="#eef2f7"/>
+      <stop offset="100%" stop-color="#eef2f7"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="24" stdDeviation="26" flood-color="#0f172a" flood-opacity="0.20"/>
+    </filter>
+  </defs>
+
+  <rect width="1280" height="720" fill="url(#bg)"/>
+
+  <!-- Brand -->
+  <rect x="70" y="56" width="56" height="56" rx="14" fill="#2563eb"/>
+  <rect x="84" y="68" width="28" height="32" rx="3" fill="#ffffff"/>
+  <rect x="89" y="76" width="18" height="3.5" rx="1.5" fill="#2563eb"/>
+  <rect x="89" y="84" width="18" height="3" rx="1.5" fill="#cbd5e1"/>
+  <rect x="89" y="90" width="18" height="3" rx="1.5" fill="#cbd5e1"/>
+  <rect x="89" y="96" width="10" height="3" rx="1.5" fill="#2563eb"/>
+  <text x="140" y="93" font-size="24" font-weight="700" fill="#0f172a">Invoice Generator</text>
+
+  <!-- Price pill -->
+  <rect x="70" y="140" width="322" height="46" rx="23" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+  <text x="90" y="170" font-size="20" font-weight="700" fill="#047857">$9 one-time &#183; Lifetime Pro</text>
+
+  <!-- Headline -->
+  <text x="68" y="272" font-size="68" font-weight="800" fill="#0f172a" letter-spacing="-1.5">Look professional.</text>
+  <text x="68" y="344" font-size="68" font-weight="800" fill="#2563eb" letter-spacing="-1.5">Ditch the</text>
+  <text x="68" y="416" font-size="68" font-weight="800" fill="#2563eb" letter-spacing="-1.5">watermark.</text>
+
+  <!-- Subtext -->
+  <text x="70" y="470" font-size="25" fill="#475569">Create &amp; download clean PDF invoices in</text>
+  <text x="70" y="504" font-size="25" fill="#475569">seconds. Free to use &#8212; go Pro to remove</text>
+  <text x="70" y="538" font-size="25" fill="#475569">the watermark forever.</text>
+
+  <!-- Checks -->
+  <g font-size="22" font-weight="600" fill="#0f172a">
+    <circle cx="84" cy="588" r="15" fill="#2563eb"/>
+    <path d="M77 588 l5 5 l9 -10" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="110" y="595">No watermark on your invoices</text>
+
+    <circle cx="84" cy="632" r="15" fill="#2563eb"/>
+    <path d="M77 632 l5 5 l9 -10" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="110" y="639">Pay once &#8212; no subscription</text>
+
+    <circle cx="84" cy="676" r="15" fill="#2563eb"/>
+    <path d="M77 676 l5 5 l9 -10" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="110" y="683">Works on any device</text>
+  </g>
+
+  <!-- Mock invoice card -->
+  <g transform="rotate(2.5 1040 365)" filter="url(#shadow)">
+    <rect x="828" y="212" width="418" height="306" rx="16" fill="#ffffff"/>
+    <!-- header -->
+    <text x="858" y="256" font-size="21" font-weight="800" fill="#0f172a">Your Business</text>
+    <text x="858" y="276" font-size="13" fill="#94a3b8">you@example.com</text>
+    <text x="1216" y="256" font-size="28" font-weight="800" fill="#2563eb" text-anchor="end" letter-spacing="1">INVOICE</text>
+    <text x="1216" y="276" font-size="13" fill="#94a3b8" text-anchor="end">#INV-0007</text>
+    <rect x="858" y="292" width="358" height="3" fill="#0f172a"/>
+    <!-- rows -->
+    <text x="858" y="326" font-size="15" fill="#0f172a">Website design</text>
+    <text x="1216" y="326" font-size="15" fill="#64748b" text-anchor="end">$1,200.00</text>
+    <rect x="858" y="340" width="358" height="1" fill="#e2e8f0"/>
+    <text x="858" y="364" font-size="15" fill="#0f172a">Logo &amp; branding</text>
+    <text x="1216" y="364" font-size="15" fill="#64748b" text-anchor="end">$450.00</text>
+    <rect x="858" y="378" width="358" height="1" fill="#e2e8f0"/>
+    <text x="858" y="402" font-size="15" fill="#0f172a">Hosting setup</text>
+    <text x="1216" y="402" font-size="15" fill="#64748b" text-anchor="end">$150.00</text>
+    <!-- total -->
+    <rect x="858" y="430" width="358" height="3" fill="#0f172a"/>
+    <text x="858" y="470" font-size="24" font-weight="800" fill="#0f172a">Total</text>
+    <text x="1216" y="470" font-size="24" font-weight="800" fill="#0f172a" text-anchor="end">$1,800.00</text>
+  </g>
+</svg>

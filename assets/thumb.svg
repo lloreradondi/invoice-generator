@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+    <filter id="sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#000000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <rect width="600" height="600" fill="url(#bg)"/>
+
+  <!-- Logo -->
+  <g filter="url(#sh)">
+    <rect x="236" y="72" width="128" height="128" rx="30" fill="#ffffff"/>
+  </g>
+  <rect x="270" y="100" width="60" height="72" rx="6" fill="#2563eb"/>
+  <rect x="281" y="118" width="38" height="6" rx="3" fill="#ffffff"/>
+  <rect x="281" y="134" width="38" height="5" rx="2.5" fill="#93c5fd"/>
+  <rect x="281" y="147" width="38" height="5" rx="2.5" fill="#93c5fd"/>
+  <rect x="281" y="160" width="22" height="5" rx="2.5" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="300" y="290" font-size="52" font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="-1">Invoice</text>
+  <text x="300" y="346" font-size="52" font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="-1">Generator</text>
+
+  <!-- PRO badge -->
+  <rect x="252" y="372" width="96" height="52" rx="12" fill="#fbbf24"/>
+  <text x="300" y="408" font-size="30" font-weight="800" fill="#1e293b" text-anchor="middle" letter-spacing="2">PRO</text>
+
+  <!-- Sub -->
+  <text x="300" y="474" font-size="26" font-weight="600" fill="#ffffff" text-anchor="middle" opacity="0.96">No watermark &#183; Clean PDFs</text>
+  <text x="300" y="512" font-size="22" fill="#ffffff" text-anchor="middle" opacity="0.9">$9 &#183; Lifetime</text>
+</svg>

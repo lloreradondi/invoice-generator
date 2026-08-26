@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1280px; height: 720px; overflow: hidden; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: radial-gradient(1200px 700px at 78% 20%, #dbeafe 0%, #eef2f7 40%, #eef2f7 100%);
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+  }
+  .wrap { display: flex; width: 100%; height: 100%; align-items: center; padding: 0 70px; gap: 40px; }
+  .left { flex: 1 1 54%; }
+  .right { flex: 1 1 46%; display: flex; justify-content: center; align-items: center; }
+
+  .brand { display: flex; align-items: center; gap: 14px; margin-bottom: 30px; }
+  .logo {
+    width: 56px; height: 56px; border-radius: 14px; background: #2563eb;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .logo svg { width: 34px; height: 34px; }
+  .brand-name { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; }
+
+  .pill {
+    display: inline-block; background: #ecfdf5; color: #047857; border: 1px solid #10b981;
+    font-weight: 700; font-size: 20px; padding: 8px 18px; border-radius: 999px; margin-bottom: 24px;
+  }
+  h1 { font-size: 68px; line-height: 1.02; letter-spacing: -0.03em; font-weight: 800; margin-bottom: 22px; }
+  h1 .accent { color: #2563eb; }
+  p.sub { font-size: 25px; color: #475569; line-height: 1.4; max-width: 560px; margin-bottom: 30px; }
+  .checks { display: flex; flex-direction: column; gap: 12px; }
+  .check { display: flex; align-items: center; gap: 12px; font-size: 22px; font-weight: 600; }
+  .check .tick {
+    width: 28px; height: 28px; border-radius: 50%; background: #2563eb; color: #fff;
+    display: flex; align-items: center; justify-content: center; font-size: 16px; flex: 0 0 auto;
+  }
+
+  /* Mock invoice */
+  .doc {
+    width: 430px; background: #fff; border-radius: 16px; padding: 34px;
+    box-shadow: 0 30px 60px rgba(15,23,42,0.22); transform: rotate(3deg);
+  }
+  .doc-head { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid #0f172a; padding-bottom: 16px; }
+  .doc-biz { font-size: 20px; font-weight: 800; }
+  .doc-biz small { display: block; font-size: 13px; color: #94a3b8; font-weight: 500; margin-top: 4px; }
+  .doc-title { font-size: 30px; font-weight: 800; color: #2563eb; letter-spacing: 0.05em; }
+  .doc-title small { display: block; font-size: 13px; color: #94a3b8; text-align: right; font-weight: 500; }
+  .doc-row { display: flex; justify-content: space-between; padding: 13px 0; border-bottom: 1px solid #e2e8f0; font-size: 15px; }
+  .doc-row .muted { color: #64748b; }
+  .doc-total { display: flex; justify-content: space-between; margin-top: 16px; padding-top: 14px; border-top: 3px solid #0f172a; font-size: 24px; font-weight: 800; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="left">
+      <div class="brand">
+        <span class="logo">
+          <svg viewBox="0 0 64 64"><rect x="14" y="8" width="36" height="48" rx="4" fill="#fff"/><rect x="20" y="18" width="24" height="4" rx="2" fill="#2563eb"/><rect x="20" y="28" width="24" height="4" rx="2" fill="#cbd5e1"/><rect x="20" y="36" width="24" height="4" rx="2" fill="#cbd5e1"/><rect x="20" y="44" width="13" height="4" rx="2" fill="#2563eb"/></svg>
+        </span>
+        <span class="brand-name">Invoice Generator</span>
+      </div>
+
+      <span class="pill">$9 one-time · Lifetime Pro</span>
+      <h1>Look professional.<br><span class="accent">Ditch the watermark.</span></h1>
+      <p class="sub">Create &amp; download clean PDF invoices in seconds. Free to use — go Pro to remove the watermark forever.</p>
+      <div class="checks">
+        <div class="check"><span class="tick">✓</span> No watermark on your invoices</div>
+        <div class="check"><span class="tick">✓</span> Pay once — no subscription</div>
+        <div class="check"><span class="tick">✓</span> Works on any device</div>
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="doc">
+        <div class="doc-head">
+          <div class="doc-biz">Your Business<small>you@example.com</small></div>
+          <div class="doc-title">INVOICE<small>#INV-0007</small></div>
+        </div>
+        <div class="doc-row"><span>Website design</span><span class="muted">$1,200.00</span></div>
+        <div class="doc-row"><span>Logo &amp; branding</span><span class="muted">$450.00</span></div>
+        <div class="doc-row"><span>Hosting setup</span><span class="muted">$150.00</span></div>
+        <div class="doc-total"><span>Total</span><span>$1,800.00</span></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
