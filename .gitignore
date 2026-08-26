@@ -2,6 +2,13 @@
 MONEY-PLAN.md
 PLAN.md
 
+# --- Secrets / saved keys (never commit) ---
+key
+key.*
+*.key
+keys.txt
+secrets.*
+
 # --- Editor / OS noise ---
 .vscode/
 .DS_Store

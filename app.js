@@ -24,8 +24,8 @@
        verify online once Option B is switched on, so no paying
        customer ever loses access.
      ---------------------------------------------------------- */
-  var GUMROAD_BUY_URL = "https://llorera3.gumroad.com/l/invgnrtrpro";
-  var GUMROAD_PRODUCT_ID = "invgnrtrpro";  // enables Option B (online verify) later
+  var GUMROAD_BUY_URL = "https://llorera3.gumroad.com/l/lhipodc";
+  var GUMROAD_PRODUCT_ID = "lhipodc";  // permalink; enables Option B (online verify) later
 
   // Displayed price for the Pro upgrade (change any time — purely cosmetic).
   var PRO_PRICE = "$9";
