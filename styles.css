@@ -890,10 +890,79 @@ select:focus {
   display: none;
 }
 
+/* ---- SEO footer / FAQ ---- */
+.site-footer {
+  border-top: 1px solid var(--line);
+  background: #fff;
+  margin-top: 24px;
+}
+
+.site-footer__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 16px 40px;
+}
+
+.seo-block {
+  margin-bottom: 24px;
+  max-width: 780px;
+}
+
+.seo-block h2 {
+  font-size: 1.25rem;
+  margin: 0 0 10px;
+}
+
+.seo-block h3 {
+  font-size: 1rem;
+  margin: 18px 0 8px;
+}
+
+.seo-block p {
+  color: var(--muted);
+  margin: 0 0 10px;
+}
+
+.seo-block ol {
+  color: var(--muted);
+  padding-left: 20px;
+  margin: 0;
+}
+
+.seo-block ol li {
+  margin-bottom: 6px;
+}
+
+.seo-block details {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  background: #f8fafc;
+}
+
+.seo-block summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.seo-block details p {
+  margin: 10px 0 0;
+}
+
+.site-footer__note {
+  color: #94a3b8;
+  font-size: 0.82rem;
+  margin: 8px 0 0;
+}
+
 /* ---- Print / PDF ---- */
 @media print {
   .app-header,
   .layout {
+    display: none !important;
+  }
+  .site-footer {
     display: none !important;
   }
   #printArea {

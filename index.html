@@ -7,6 +7,7 @@
   <meta name="description" content="Free online invoice generator. Create, preview and download professional invoices as PDF. Works on mobile, PC and Mac." />
   <title>Free Invoice Generator — Create &amp; Download Invoices as PDF</title>
 
+  <link rel="canonical" href="https://lloreradondi.github.io/invoice-generator/" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 
   <!-- Social sharing (Open Graph / Twitter) -->
@@ -15,6 +16,52 @@
   <meta property="og:description" content="Create, preview and download professional invoices as PDF. Free, private, works on any device." />
   <meta property="og:url" content="https://lloreradondi.github.io/invoice-generator/" />
   <meta name="twitter:card" content="summary" />
+
+  <!-- Structured data: helps search engines understand the app -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Free Invoice Generator",
+    "url": "https://lloreradondi.github.io/invoice-generator/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any (web browser)",
+    "description": "Free online invoice generator. Create, preview and download professional invoices as PDF. Works on mobile, PC and Mac.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is this invoice generator free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. You can create, preview and download unlimited invoices as PDF for free. An optional one-time Pro upgrade removes the small watermark." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need an account to create an invoice?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No account or sign-up is needed. Everything runs in your browser and your data stays on your own device." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I download my invoice as a PDF?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Click Print / PDF, then choose 'Save as PDF' in your browser's print dialog. Uncheck 'Headers & footers' for a clean invoice." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does it work on mobile and Mac?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. It works in any modern browser on phones, PC and Mac, including Chrome, Edge, Firefox and Safari." }
+      }
+    ]
+  }
+  </script>
 
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -225,6 +272,49 @@
       </div>
     </section>
   </main>
+
+  <!-- SEO content & FAQ (helps the page rank for "free invoice generator") -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <section class="seo-block">
+        <h2>Free Invoice Generator</h2>
+        <p>
+          Create professional invoices online in seconds — no sign-up, no software to install.
+          This free invoice maker lets you add your business details, logo, line items, tax and
+          discounts, then preview and download your invoice as a clean PDF. It works on mobile,
+          PC and Mac, and everything stays private on your own device.
+        </p>
+        <h3>How to create an invoice</h3>
+        <ol>
+          <li>Fill in your business and client details.</li>
+          <li>Add your items with quantity and price — totals are calculated automatically.</li>
+          <li>Click <strong>Print / PDF</strong> and choose &ldquo;Save as PDF&rdquo;.</li>
+        </ol>
+      </section>
+
+      <section class="seo-block">
+        <h3>Frequently asked questions</h3>
+        <details>
+          <summary>Is this invoice generator free?</summary>
+          <p>Yes. Create, preview and download unlimited invoices as PDF for free. An optional one-time Pro upgrade removes the small watermark.</p>
+        </details>
+        <details>
+          <summary>Do I need an account?</summary>
+          <p>No. There&rsquo;s no sign-up. Everything runs in your browser and your data stays on your device.</p>
+        </details>
+        <details>
+          <summary>How do I download my invoice as a PDF?</summary>
+          <p>Click Print / PDF, then choose &ldquo;Save as PDF&rdquo; in your browser&rsquo;s print dialog. Uncheck &ldquo;Headers &amp; footers&rdquo; for a clean invoice.</p>
+        </details>
+        <details>
+          <summary>Does it work on mobile and Mac?</summary>
+          <p>Yes &mdash; it works in any modern browser on phones, PC and Mac (Chrome, Edge, Firefox and Safari).</p>
+        </details>
+      </section>
+
+      <p class="site-footer__note">Free Invoice Generator &middot; Runs in your browser &middot; Your data never leaves your device.</p>
+    </div>
+  </footer>
 
   <!-- Hidden container used to render one or many invoices for printing/PDF -->
   <div id="printArea" aria-hidden="true"></div>
