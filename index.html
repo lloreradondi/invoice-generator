@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#2563eb" />
+  <meta name="description" content="Free online invoice generator. Create, preview and download professional invoices as PDF. Works on mobile, PC and Mac." />
+  <title>Free Invoice Generator — Create &amp; Download Invoices as PDF</title>
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+
+  <!-- Social sharing (Open Graph / Twitter) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Free Invoice Generator" />
+  <meta property="og:description" content="Create, preview and download professional invoices as PDF. Free, private, works on any device." />
+  <meta name="twitter:card" content="summary" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="app-header__inner">
+      <h1 class="app-header__title">
+        <span class="logo-mark" aria-hidden="true">₹$€</span>
+        Invoice Generator
+      </h1>
+      <div class="app-header__actions">
+        <button type="button" id="btnPro" class="btn btn--pro">Upgrade to Pro</button>
+        <button type="button" id="btnSave" class="btn btn--ghost">Save</button>
+        <button type="button" id="btnReset" class="btn btn--ghost">Reset</button>
+        <button type="button" id="btnPrint" class="btn btn--primary">Print / PDF</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <!-- ===== FORM (editor) ===== -->
+    <section class="editor" aria-label="Invoice editor">
+
+      <section class="card saved-card" aria-label="Saved invoices">
+        <div class="saved-card__head">
+          <span class="card__title">My invoices</span>
+          <div class="saved-card__actions">
+            <button type="button" id="btnNewInvoice" class="btn btn--tiny">+ New</button>
+            <button type="button" id="btnSaveInvoice" class="btn btn--tiny btn--primary">Save current</button>
+          </div>
+        </div>
+        <div class="saved-card__tools">
+          <label class="saved-card__selectall">
+            <input type="checkbox" id="chkSelectAll" /> Select all
+          </label>
+          <button type="button" id="btnDownloadSelected" class="btn btn--tiny">Download selected</button>
+          <button type="button" id="btnDownloadAll" class="btn btn--tiny">Download all</button>
+        </div>
+        <div id="savedList" class="saved-list"></div>
+      </section>
+
+      <form id="invoiceForm" autocomplete="off" novalidate>
+
+        <fieldset class="card">
+          <legend class="card__title">Your business</legend>
+          <div class="field field--logo">
+            <label for="logoInput" class="field__label">Logo (optional)</label>
+            <div class="logo-upload">
+              <img id="logoPreview" class="logo-upload__img is-hidden" alt="Business logo preview" />
+              <input type="file" id="logoInput" accept="image/*" class="logo-upload__input" />
+              <button type="button" id="btnRemoveLogo" class="btn btn--tiny is-hidden">Remove</button>
+            </div>
+          </div>
+          <div class="field">
+            <label for="bizName" class="field__label">Business name</label>
+            <input type="text" id="bizName" data-model="bizName" placeholder="Your business or your name" />
+          </div>
+          <div class="field">
+            <label for="bizEmail" class="field__label">Email</label>
+            <input type="email" id="bizEmail" data-model="bizEmail" placeholder="you@example.com" />
+          </div>
+          <div class="field">
+            <label for="bizAddress" class="field__label">Address</label>
+            <textarea id="bizAddress" data-model="bizAddress" rows="2" placeholder="Street, City, Country"></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset class="card">
+          <legend class="card__title">Bill to (client)</legend>
+          <div class="field">
+            <label for="clientName" class="field__label">Client name</label>
+            <input type="text" id="clientName" data-model="clientName" placeholder="Client or company" />
+          </div>
+          <div class="field">
+            <label for="clientEmail" class="field__label">Email</label>
+            <input type="email" id="clientEmail" data-model="clientEmail" placeholder="client@example.com" />
+          </div>
+          <div class="field">
+            <label for="clientAddress" class="field__label">Address</label>
+            <textarea id="clientAddress" data-model="clientAddress" rows="2" placeholder="Street, City, Country"></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset class="card">
+          <legend class="card__title">Invoice details</legend>
+          <div class="field-row">
+            <div class="field">
+              <label for="invoiceNumber" class="field__label">Invoice #</label>
+              <input type="text" id="invoiceNumber" data-model="invoiceNumber" maxlength="40" placeholder="INV-0001" />
+            </div>
+            <div class="field">
+              <label for="currency" class="field__label">Currency</label>
+              <select id="currency" data-model="currency">
+                <option value="$">$ USD</option>
+                <option value="€">€ EUR</option>
+                <option value="£">£ GBP</option>
+                <option value="₹">₹ INR</option>
+                <option value="₱">₱ PHP</option>
+                <option value="¥">¥ JPY</option>
+                <option value="A$">A$ AUD</option>
+                <option value="C$">C$ CAD</option>
+              </select>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="issueDate" class="field__label">Issue date</label>
+              <input type="date" id="issueDate" data-model="issueDate" />
+            </div>
+            <div class="field">
+              <label for="dueDate" class="field__label">Due date</label>
+              <input type="date" id="dueDate" data-model="dueDate" />
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="card">
+          <legend class="card__title">Items</legend>
+          <div id="itemsList" class="items"></div>
+          <button type="button" id="btnAddItem" class="btn btn--dashed">+ Add item</button>
+
+          <div class="field-row field-row--totals">
+            <div class="field">
+              <label for="taxRate" class="field__label">Tax rate (%)</label>
+              <input type="number" id="taxRate" data-model="taxRate" min="0" step="0.01" value="0" inputmode="decimal" />
+            </div>
+            <div class="field">
+              <label for="discount" class="field__label">Discount (amount)</label>
+              <input type="number" id="discount" data-model="discount" min="0" step="0.01" value="0" inputmode="decimal" />
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="card">
+          <legend class="card__title">Notes</legend>
+          <div class="field">
+            <label for="notes" class="field__label">Notes / payment terms</label>
+            <textarea id="notes" data-model="notes" rows="3" placeholder="Thank you for your business! Payment due within 14 days."></textarea>
+          </div>
+        </fieldset>
+      </form>
+    </section>
+
+    <!-- ===== LIVE PREVIEW ===== -->
+    <section class="preview-wrap" aria-label="Invoice preview">
+      <div class="preview-toolbar">
+        <span class="preview-toolbar__label">Live preview</span>
+        <span class="preview-toolbar__tip">Tip: in the print dialog, uncheck &ldquo;Headers &amp; footers&rdquo; for a clean PDF.</span>
+      </div>
+      <div id="invoicePreview" class="invoice-doc" aria-live="polite">
+        <div id="pvStamp" class="invoice-doc__stamp" aria-hidden="true">
+          <span>Free version</span><span>Free version</span><span>Free version</span>
+        </div>
+        <div class="invoice-doc__header">
+          <div class="invoice-doc__brand">
+            <img id="pvLogo" class="invoice-doc__logo is-hidden" alt="" />
+            <div>
+              <div id="pvBizName" class="invoice-doc__biz-name">Your business</div>
+              <div id="pvBizEmail" class="invoice-doc__muted"></div>
+              <div id="pvBizAddress" class="invoice-doc__muted invoice-doc__pre"></div>
+            </div>
+          </div>
+          <div class="invoice-doc__meta">
+            <div class="invoice-doc__invoice-title">INVOICE</div>
+            <div id="pvInvoiceNumber" class="invoice-doc__muted"></div>
+            <div id="pvIssueDate" class="invoice-doc__muted"></div>
+            <div id="pvDueDate" class="invoice-doc__muted"></div>
+          </div>
+        </div>
+
+        <div class="invoice-doc__billto">
+          <div class="invoice-doc__section-label">Bill to</div>
+          <div id="pvClientName" class="invoice-doc__strong"></div>
+          <div id="pvClientEmail" class="invoice-doc__muted"></div>
+          <div id="pvClientAddress" class="invoice-doc__muted invoice-doc__pre"></div>
+        </div>
+
+        <table class="invoice-doc__table">
+          <thead>
+            <tr>
+              <th class="col-desc">Description</th>
+              <th class="col-qty">Qty</th>
+              <th class="col-price">Price</th>
+              <th class="col-amount">Amount</th>
+            </tr>
+          </thead>
+          <tbody id="pvItems"></tbody>
+        </table>
+
+        <div class="invoice-doc__totals">
+          <div class="invoice-doc__total-row">
+            <span>Subtotal</span><span id="pvSubtotal">0.00</span>
+          </div>
+          <div class="invoice-doc__total-row" id="pvDiscountRow">
+            <span>Discount</span><span id="pvDiscount">0.00</span>
+          </div>
+          <div class="invoice-doc__total-row" id="pvTaxRow">
+            <span id="pvTaxLabel">Tax</span><span id="pvTax">0.00</span>
+          </div>
+          <div class="invoice-doc__total-row invoice-doc__total-row--grand">
+            <span>Total</span><span id="pvTotal">0.00</span>
+          </div>
+        </div>
+
+        <div id="pvNotes" class="invoice-doc__notes is-hidden"></div>
+
+        <div id="pvWatermark" class="invoice-doc__watermark">Made with Free Invoice Generator — upgrade to Pro to remove this</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Hidden container used to render one or many invoices for printing/PDF -->
+  <div id="printArea" aria-hidden="true"></div>
+
+  <!-- Upgrade / license modal -->
+  <div id="proModal" class="modal is-hidden" role="dialog" aria-modal="true" aria-labelledby="proModalTitle">
+    <div class="modal__backdrop" data-close="1"></div>
+    <div class="modal__card" role="document">
+      <button type="button" class="modal__x" data-close="1" aria-label="Close">&times;</button>
+      <h2 id="proModalTitle" class="modal__title">Upgrade to Pro</h2>
+      <p class="modal__price"><span id="proPrice">$9</span> one-time · lifetime access</p>
+      <p class="modal__text">Free invoices carry a &ldquo;Free version&rdquo; watermark across the page. Pro removes it completely, so you can send clean, professional invoices to your clients.</p>
+      <ul class="modal__list">
+        <li>Remove the &ldquo;Free version&rdquo; watermark &amp; footer</li>
+        <li>One-time purchase &mdash; lifetime access, no subscription</li>
+        <li>Use your key on any device or browser</li>
+      </ul>
+
+      <a id="proBuyLink" class="btn btn--primary modal__buy" href="#" target="_blank" rel="noopener noreferrer">Get Pro</a>
+
+      <div class="modal__divider"><span>Already purchased?</span></div>
+
+      <label class="field__label" for="licenseInput">Enter your license key</label>
+      <div class="modal__activate">
+        <input type="text" id="licenseInput" placeholder="XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX" autocomplete="off" spellcheck="false" />
+        <button type="button" id="btnActivate" class="btn btn--primary">Activate</button>
+      </div>
+      <p id="licenseMsg" class="modal__msg" role="status" aria-live="polite"></p>
+
+      <div id="proActiveBlock" class="modal__active is-hidden">
+        <p class="modal__msg modal__msg--ok">&#10003; Pro is active on this browser.</p>
+        <button type="button" id="btnRemoveLicense" class="btn btn--tiny btn--danger-ghost">Remove license from this browser</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+# --- Private / internal docs (keep OUT of the public repo) ---
+MONEY-PLAN.md
+PLAN.md
+
+# --- Editor / OS noise ---
+.vscode/
+.DS_Store
+Thumbs.db
+*.log
+
+# --- Notes / memory ---
+memories/
+.memories/
